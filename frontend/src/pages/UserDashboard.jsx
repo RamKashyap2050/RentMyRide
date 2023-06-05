@@ -154,10 +154,6 @@ const UserDashboard = () => {
               Search
             </button>
           </div>
-
-          <div className="row">
-            <h1>Search Bar</h1>
-          </div>
         </div>
       </div>
       <br />

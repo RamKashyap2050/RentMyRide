@@ -41,7 +41,7 @@ const UserBookings = () => {
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
   const removeBooking = async (booking) => {
     try {
@@ -98,7 +98,9 @@ const UserBookings = () => {
         <div
           key={key}
           className={`card mb-3 mx-auto w-75 ml-3 ${
-            new Date(item.endDate) > new Date() ? "" : "disabled-card"
+            item.isCancelled || new Date(item.endDate) <= new Date()
+              ? "disabled-card"
+              : ""
           }`}
         >
           <div
@@ -159,7 +161,7 @@ const UserBookings = () => {
                   Cancel Booking
                 </button>
               ) : item.isPaid && item.isCancelled ? (
-                <span>Removed</span>
+                <span></span>
               ) : (
                 <div
                   className="d-flex"
