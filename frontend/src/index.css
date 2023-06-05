@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root{
+overflow-x: hidden;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav li:first-child {
+  margin-left: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+}
+
+.account i {
+  margin-left: 5px;
+}
+nav ul li a{
+  font-size: 2rem;
+}
+nav ul li a:hover{
+  transition: 0.5s;
+  color: #6fc3d5;
+}
+@media screen and (max-width: 600px) {
+  header {
+    display: block;
+    padding: 6px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+    width: 100%;
+  }
+  nav ul li a{
+    font-size: 3rem;
+  }
+  nav ul li a:hover{
+    transition: 0.7s;
+    color: #6fc3d5;
+  }
+
+
+
+  .brand {
+    display: none;
+  }
+}
+.profilephoto{
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  text-align: center;
+  border-radius: 50%;
+  }
+.Dashboardcar{
+  width: 300px;
+  height: 200px;
+}
+.cartcar{
+  width: 100%;
+  height: 200px;
+}
+
+.manageuserbooking{
+  height: 30x;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.managecarbooking{
+  height: 300x;
+  width: 400px;
+}
+.disabled-card {
+  opacity: 0.5;
+  pointer-events: none;
+  /* Add any other styling for the disabled card */
+}
