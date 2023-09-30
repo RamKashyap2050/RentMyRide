@@ -26,7 +26,7 @@ const UserBookings = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3004/Users/getbookings/${user._id}`,
+          `/Users/getbookings/${user._id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ const UserBookings = () => {
   const removeBooking = async (booking) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3004/Users/bookings/${booking}`
+        `/Users/bookings/${booking}`
       );
       console.log(response.data); // Optional: Log the response data if needed
     } catch (error) {
@@ -59,7 +59,7 @@ const UserBookings = () => {
     navigate('/user/checkout')
     try {
       const response = await axios.put(
-        `http://localhost:3004/Users/confirmbookings/${booking}`
+        `/Users/confirmbookings/${booking}`
       );
       console.log(response.data);
     } catch (error) {
@@ -70,7 +70,7 @@ const UserBookings = () => {
   const cancelbooking = async (booking) => {
     try {
       const response = await axios.put(
-        `http://localhost:3004/Users/cancelbookings/${booking}`
+        `/Users/cancelbookings/${booking}`
       );
       console.log(response.data);
     } catch (error) {

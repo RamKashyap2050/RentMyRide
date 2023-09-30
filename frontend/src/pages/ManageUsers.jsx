@@ -23,7 +23,7 @@ const ManageUsers = () => {
 
   //This will fetch all users for Admin for Blocking and Unblocking Purposes
   useEffect(() => {
-    Axios.get("http://localhost:3004/Admin/getallUsers").then((response) => {
+    Axios.get("/Admin/getallUsers").then((response) => {
       setResults(response.data);
       console.log(response.data);
     });
@@ -31,7 +31,7 @@ const ManageUsers = () => {
 
   //This will block a user
   const blockUser = (key) => {
-    Axios.put(`http://localhost:3004/Admin/updatetofalse/${key}`).then(() => {
+    Axios.put(`/Admin/updatetofalse/${key}`).then(() => {
       // Update the state to reflect the new status
       setResults((prevResults) =>
         prevResults.map((val) => {
@@ -50,7 +50,7 @@ const ManageUsers = () => {
 
   //This will unblock a user
   const unblockUser = (key) => {
-    Axios.put(`http://localhost:3004/Admin/updatetotrue/${key}`).then(() => {
+    Axios.put(`/updatetotrue/${key}`).then(() => {
       // Update the state to reflect the new status
       setResults((prevResults) =>
         prevResults.map((val) => {

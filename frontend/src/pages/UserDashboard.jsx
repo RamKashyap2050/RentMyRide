@@ -31,7 +31,7 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3004/Users/getcars");
+        const response = await fetch("/Users/getcars");
         const data = await response.json();
         setCars(data);
       } catch (error) {
@@ -44,7 +44,7 @@ const UserDashboard = () => {
   const fetchAvailableCars = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3004/Users/availability",
+        "/Users/availability",
         {
           startDate: startDate,
           endDate: endDate,
@@ -92,7 +92,7 @@ const UserDashboard = () => {
   const handleRentNow = async (carIndex) => {
     if (!searchClicked) {
       console.log("Please click the search button first.");
-      setShow(true);
+      setShow(true);  
       return;
     }
     const selectedCar = cars[carIndex];
@@ -113,7 +113,7 @@ const UserDashboard = () => {
     );
 
     try {
-      await axios.post("http://localhost:3004/Users/addtomodel", {
+      await axios.post("/Users/addtomodel", {
         car: carId,
         user: userId,
         startDate: startDate,

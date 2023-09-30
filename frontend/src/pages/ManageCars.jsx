@@ -18,7 +18,7 @@ const ManageCars = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await axios.get("http://localhost:3004/Users/getcars");
+        const response = await axios.get("/Users/getcars");
         setCars(response.data);
       } catch (error) {
         console.error("Error fetching car data:", error);
@@ -47,7 +47,7 @@ const ManageCars = () => {
   const handleRemoveCar = async (carId) => {
     try {
       // Make an API call to remove the car with the given carId
-      await axios.delete(`http://localhost:3004/Admin/cars/${carId}`);
+      await axios.delete(`/Admin/cars/${carId}`);
       // Update the cars state after removing the car
       setCars(cars.filter((car) => car.id !== carId));
       toast.success("Car removed successfully.");

@@ -7,7 +7,7 @@ const ManageUserBookings = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3004/Admin/getbookings", {
+    fetch("/Admin/getbookings", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
