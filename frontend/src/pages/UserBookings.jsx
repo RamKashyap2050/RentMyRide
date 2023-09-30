@@ -56,6 +56,7 @@ const UserBookings = () => {
   };
 
   const confirmBooking = async (booking) => {
+    navigate('/user/checkout')
     try {
       const response = await axios.put(
         `http://localhost:3004/Users/confirmbookings/${booking}`

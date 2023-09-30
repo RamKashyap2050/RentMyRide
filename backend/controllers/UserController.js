@@ -104,6 +104,7 @@ const getallcarsforuserbasedonavailability = asyncHandler(async (req, res) => {
     startDate: { $lte: new Date(endDate) },
     endDate: { $gte: new Date(startDate) },
     isPaid: true,
+    isCancelled: false
   }).distinct("car");
 
   // Filter the cars based on availability
@@ -118,6 +119,38 @@ const getallcarsforuserbasedonavailability = asyncHandler(async (req, res) => {
   res.status(200).json(availableCars);
 });
 
+
+const unblockbyadmin = asyncHandler(async (req, res) => {
+  try {
+    const user = await Users.findByIdAndUpdate(
+      req.params.id,
+      { AccountStatus: true }, // set the AccountStatus to true for unblocking
+      { new: true } // return the updated document
+    );
+
+    res.status(200).json({ message: "User unblocked successfully", user });
+  } catch (error) {
+    console.log("Error updating user:", error);
+    res.status(500).json({ status: 500, message: "Internal server error" });
+  }
+});
+
+const blockbyadmin = asyncHandler(async (req, res) => {
+  try {
+    const user = await Users.findByIdAndUpdate(
+      req.params.id,
+      { AccountStatus: false }, // set the AccountStatus to true for unblocking
+      { new: true } // return the updated document
+    );
+
+    res.status(200).json({ message: "User unblocked successfully", user });
+  } catch (error) {
+    console.log("Error updating user:", error);
+    res.status(500).json({ status: 500, message: "Internal server error" });
+  }
+});
+
+
 const generateToken = async (id) => {
   return await jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
@@ -129,4 +162,6 @@ module.exports = {
   loginUser,
   getallcarsforuser,
   getallcarsforuserbasedonavailability,
+  blockbyadmin,
+  unblockbyadmin
 };

@@ -15,4 +15,6 @@ router.route('/availability').post(getallcarsforuserbasedonavailability)
 router.route('/confirmbookings/:booking').put(confirmbooking)
 router.route('/cancelbookings/:booking').put(cancelbooking)
 
+
+
 module.exports = router

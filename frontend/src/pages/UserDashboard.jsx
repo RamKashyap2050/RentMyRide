@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import UserHeader from "../components/UserHeader";
 import axios from "axios";
+
 import Footer from "../components/Footer";
 import { Buffer } from "buffer";
 import { useNavigate } from "react-router-dom";
@@ -137,11 +138,12 @@ const UserDashboard = () => {
     }
     return car.carType === selectedCarType;
   });
+
   return (
     <div>
       <UserHeader />
-      <div style={{ margin: "auto", textAlign: "center" }}>
-        <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div className="container text-center mt-4">
+        <div className="d-flex justify-content-center">
           <div className="d-flex align-items-center">
             <RangePicker
               format="YYYY-MM-DD"
@@ -160,15 +162,17 @@ const UserDashboard = () => {
       <br />
       {show ? (
         <Alert variant="danger" className="w-50 mx-auto">
-          Please Click Search Button near Calender
+          Please Click Search Button near Calendar
         </Alert>
       ) : null}
 
       <div
+        className="container"
         style={{
           display: "grid",
           justifyContent: "space-evenly",
-          gridTemplateColumns: "repeat(4,1fr)",
+          gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+          gap: "1rem",
         }}
       >
         {cars.map((car, key) => (
@@ -182,17 +186,17 @@ const UserDashboard = () => {
                 <img
                   className="card-img-top Dashboardcar"
                   src={imageUrl}
-                  alt="User profile"
+                  alt="Car"
                 />
               ) : null
             )}
             <div className="card-body">
               <h5 className="card-title">{car.carName}</h5>
               <p className="card-text">Model Year: {car.carModel}</p>
-              <p className="card-text" style={{ fontWeight: "bolder" }}>
+              <p className="card-text font-weight-bold">
                 Car Type: {car.carType}
               </p>
-              <p className="card-text" style={{ fontWeight: "lighter" }}>
+              <p className="card-text font-weight-light">
                 Amount: {car.rentPerDay}
               </p>
               {startDate && endDate ? (
@@ -215,6 +219,7 @@ const UserDashboard = () => {
           </div>
         ))}
       </div>
+
       <Footer />
     </div>
   );

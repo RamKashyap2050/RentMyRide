@@ -14,6 +14,7 @@ import ManageUserBookings from './pages/ManageUserBookings';
 import UserDashboard from './pages/UserDashboard';
 import UserBookings from './pages/UserBookings';
 import ManageCars from './pages/ManageCars';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path='/admin/managecars' element={<ManageCars />} />
         <Route path='/user/dashboard' element={<UserDashboard />}/>
         <Route path='/user/bookings' element={< UserBookings />}/>
+        <Route path='/user/checkout' element={<Checkout />} />
         </Routes>
     </BrowserRouter>
     <ToastContainer />
