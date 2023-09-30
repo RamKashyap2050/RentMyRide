@@ -31,16 +31,18 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/Users/getcars");
-        const data = await response.json();
+        const response = await axios.get("/Users/getcars");
+        const data = response.data;
+        console.log(data)
         setCars(data);
       } catch (error) {
         console.error(error);
       }
     };
-
+  
     fetchData();
   }, []);
+  
   const fetchAvailableCars = async () => {
     try {
       const response = await axios.post(

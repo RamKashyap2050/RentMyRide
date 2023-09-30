@@ -90,6 +90,9 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const getallcarsforuser = asyncHandler(async (req, res) => {
   const getAllcars = await Car.find();
+  const responseSize = JSON.stringify(getAllcars).length;
+
+  console.log(`Data size of the response: ${responseSize} bytes`);
   res.status(200).json(getAllcars);
 });
 

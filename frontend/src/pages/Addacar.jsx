@@ -27,6 +27,7 @@ const Addacar = () => {
   });
 
   const { carName, carModel, carType, image, rentPerHalfDay } = carData;
+
   const onChange = (e) => {
     if (e.target.type === 'file') {
       const file = e.target.files[0];
@@ -41,8 +42,10 @@ const Addacar = () => {
       }));
     }
   };
+  console.log(carData)
   const onSubmit = (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append('carName', carData.carName);
     formData.append('carModel', carData.carModel);
@@ -50,7 +53,7 @@ const Addacar = () => {
     formData.append('image', carData.image);
     formData.append('rentPerHalfDay', carData.rentPerHalfDay);
     console.log(formData)
-    axios.post('http://localhost:3004/Admin/addacar', formData)
+    axios.post('/Admin/addacar', formData)
       .then(response => {
         console.log(response);
       })
