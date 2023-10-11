@@ -50,7 +50,7 @@ const ManageUsers = () => {
 
   //This will unblock a user
   const unblockUser = (key) => {
-    Axios.put(`/updatetotrue/${key}`).then(() => {
+    Axios.put(`/Admin/updatetotrue/${key}`).then(() => {
       // Update the state to reflect the new status
       setResults((prevResults) =>
         prevResults.map((val) => {
@@ -97,19 +97,14 @@ const ManageUsers = () => {
             <tbody>
               {results.map((val, key) => (
                 <tr key={key}>
-                  {imageUrls.map((imageUrl, index) =>
-                    index === key ? (
-                      <td key={index}>
-                        {imageUrl && (
-                          <img
-                            className="Dashboardprofilephoto"
-                            src={imageUrl}
-                            alt="User profile"
-                          />
-                        )}
-                      </td>
-                    ) : null
-                  )}
+                  <td>
+                    {" "}
+                    <img
+                      className="Dashboardprofilephoto"
+                      src={val.image}
+                      alt="User profile"
+                    />
+                  </td>
                   <td>{val.user_name}</td>
                   <td>{val.email}</td>
                   <td>{val.phone}</td>

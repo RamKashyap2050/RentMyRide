@@ -66,15 +66,7 @@ const UserDashboard = () => {
       setSearchClicked(true);
     }
   };
-  const imageUrls = cars.map((car) => {
-    const imageBuffer = car?.image?.data;
-    if (!imageBuffer) {
-      return null;
-    }
-    const base64String = Buffer.from(imageBuffer).toString("base64");
-    const imageUrl = `data:image/jpeg;base64,${base64String}`;
-    return imageUrl;
-  });
+
 
   console.log(startDate, endDate);
 
@@ -183,15 +175,11 @@ const UserDashboard = () => {
             key={key}
             style={{ maxWidth: "400px", marginBottom: "1rem" }}
           >
-            {imageUrls.map((imageUrl, index) =>
-              index === key ? (
-                <img
+              <img
                   className="card-img-top Dashboardcar"
-                  src={imageUrl}
+                  src={car.image}
                   alt="Car"
                 />
-              ) : null
-            )}
             <div className="card-body">
               <h5 className="card-title">{car.carName}</h5>
               <p className="card-text">Model Year: {car.carModel}</p>

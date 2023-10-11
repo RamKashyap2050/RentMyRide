@@ -185,7 +185,7 @@ const UserBookings = () => {
             </div>
             <div>
               <img
-                src={convertImageBufferToBase64(item.car.image.data)}
+                src={item.car.image}
                 alt="User Profile"
                 className="managecarbooking"
               />

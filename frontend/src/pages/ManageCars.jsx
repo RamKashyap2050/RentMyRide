@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate} from "react-router-dom";
 import { useSelector } from "react-redux";
 import "../styles/AllUserAdmin.css";
 import AdminHeader from "../components/AdminHeader";
 import Footer from "../components/Footer";
-import { Buffer } from "buffer";
 import { toast } from "react-toastify";
 
 const ManageCars = () => {
@@ -35,14 +33,7 @@ const ManageCars = () => {
     }
   }, [Admin, navigate]);
 
-  const convertImageBufferToBase64 = (imageBuffer) => {
-    if (!imageBuffer) {
-      return null;
-    }
-    const base64String = Buffer.from(imageBuffer).toString("base64");
-    const imageUrl = `data:image/jpeg;base64,${base64String}`;
-    return imageUrl;
-  };
+
 
   const handleRemoveCar = async (carId) => {
     try {
@@ -70,7 +61,7 @@ const ManageCars = () => {
           >
             <div className="card-image">
               <img
-                src={convertImageBufferToBase64(car.image.data)}
+                src={car.image}
                 alt="Car Image"
                 className="managecarbooking"
               />

@@ -23,19 +23,19 @@ const ProfilePageUser = () => {
     dispatch(reset());
   };
 
-  const imageBuffer = user?.image?.data;
-  if (!imageBuffer) {
-    return null;
-  }
-  const base64String = Buffer.from(imageBuffer).toString("base64");
-  const imageUrl = `data:image/jpeg;base64,${base64String}`;
+  // const imageBuffer = user?.image?.data;
+  // if (!imageBuffer) {
+  //   return null;
+  // }
+  // const base64String = Buffer.from(imageBuffer).toString("base64");
+  // const imageUrl = `data:image/jpeg;base64,${base64String}`;
 
   return (
     <div>
       <UserHeader />
       <div style={{ maxWidth: "500px", margin: "2rem auto" }}>
-        {imageUrl && (
-          <img className="profilephoto" src={imageUrl} alt="User profile" />
+        {user.image && (
+          <img className="profilephoto" src={user.image} alt="User profile" />
         )}
 
         <div className="card-body">

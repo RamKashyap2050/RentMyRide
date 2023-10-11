@@ -44,7 +44,7 @@ const ManageUserBookings = () => {
             <div style={{ display: "flex" }}>
               <div className="mr-3">
                 <img
-                  src={convertImageBufferToBase64(item.user.image.data)}
+                  src={item.car.image}
                   alt="User Profile"
                   className="manageuserbooking"
                 />

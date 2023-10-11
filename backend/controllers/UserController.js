@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const Car = require("../models/CarModel");
 const BookingModel = require("../models/BookingModel");
+const { uploadImageToS3 } = require("../AWS_S3/s3");
 
 //Function that enables us to Signup
 const registerUser = asyncHandler(async (req, res) => {
@@ -25,12 +26,13 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
+  const imageUrl = await uploadImageToS3(image);
 
   const user = await Users.create({
     user_name,
     email,
     phone,
-    image: image,
+    image: imageUrl,
     password: hashedPassword,
   });
 
@@ -92,7 +94,7 @@ const getallcarsforuser = asyncHandler(async (req, res) => {
   const getAllcars = await Car.find();
   const responseSize = JSON.stringify(getAllcars).length;
 
-  console.log(`Data size of the response: ${responseSize} bytes`);
+  console.log(`Data size of the response for All cars: ${responseSize} bytes`);
   res.status(200).json(getAllcars);
 });
 
@@ -107,7 +109,7 @@ const getallcarsforuserbasedonavailability = asyncHandler(async (req, res) => {
     startDate: { $lte: new Date(endDate) },
     endDate: { $gte: new Date(startDate) },
     isPaid: true,
-    isCancelled: false
+    isCancelled: false,
   }).distinct("car");
 
   // Filter the cars based on availability
@@ -121,7 +123,6 @@ const getallcarsforuserbasedonavailability = asyncHandler(async (req, res) => {
   }
   res.status(200).json(availableCars);
 });
-
 
 const unblockbyadmin = asyncHandler(async (req, res) => {
   try {
@@ -153,7 +154,6 @@ const blockbyadmin = asyncHandler(async (req, res) => {
   }
 });
 
-
 const generateToken = async (id) => {
   return await jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
@@ -166,5 +166,5 @@ module.exports = {
   getallcarsforuser,
   getallcarsforuserbasedonavailability,
   blockbyadmin,
-  unblockbyadmin
+  unblockbyadmin,
 };

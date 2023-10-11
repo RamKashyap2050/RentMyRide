@@ -6,6 +6,8 @@ const Car = require("../models/CarModel");
 const User = require("../models/UserModel");
 const Booking = require("../models/BookingModel");
 const sharp = require("sharp"); // Import the sharp library
+const { uploadImageToS3 } = require("../AWS_S3/s3");
+
 
 //Function which enables User to Login
 const loginAdmin = asyncHandler(async (req, res) => {
@@ -37,34 +39,18 @@ const addcar = asyncHandler(async (req, res) => {
   
     if (!carName || !carModel || !carType || !image || !rentPerHalfDay) {
       res.status(400).json({ message: "Please enter all fields" });
-      return; // Exit the function early if validation fails
+      return;
     }
-  
+    const imageUrl = await uploadImageToS3(image);
+
     try {
-      // Use Sharp to compress the image to less than 750KB
-      const compressedImage = await sharp(image.data)
-        .resize({ width: 800 })
-        .jpeg({ quality: 80 })
-        .toBuffer();
-  
-      // Check the size of the compressed image
-      const compressedImageSizeInBytes = compressedImage.length;
-      const compressedImageSizeInKB = compressedImageSizeInBytes / 1024;
-  
-      if (compressedImageSizeInKB > 750) {
-        res.status(400).json({ message: "Compressed image size should be less than 750KB" });
-        return;
-      }
-  
+ 
       // Create the car document with the compressed image
       const car = await Car.create({
         carName,
         carModel,
         carType,
-        image: {
-          data: compressedImage, // Store the compressed image data
-          ContentType: image.ContentType, // Preserve the content type
-        },
+        image:imageUrl,
         rentPerDay: rentPerHalfDay,
       });
   

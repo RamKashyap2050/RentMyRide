@@ -20,8 +20,7 @@ const userSchema = mongoose.Schema({
         required:[true, 'Please enter your phone']
     },
     image: {
-        data:Buffer,
-        ContentType: String
+       type:String
     },
     AccountStatus: {
         type: Boolean,
